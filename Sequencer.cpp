@@ -18,7 +18,7 @@ Sequencer::Sequencer() {
 	    fprintf(stderr, "Error opening ALSA sequencer.\n");
 	    return;
 	  }
-	  snd_seq_set_client_name(seq_handle, "keyseqapa");
+	  snd_seq_set_client_name(seq_handle, "keyseq");
 //	  for (l1 = 0; l1 < num_in; l1++) {
 //	    sprintf(portname, "MIDI Router IN %d", l1);
 //	    if ((in_ports[l1] = snd_seq_create_simple_port(*seq_handle, portname,
@@ -29,7 +29,7 @@ Sequencer::Sequencer() {
 //	    }
 //	  }
 	  for (l1 = 0; l1 < MAX_MIDI_PORTS; l1++) {
-	    sprintf(portname, "MIDI Router OUT %d", l1);
+	    sprintf(portname, "keyseq%d", l1);
 	    if ((out_ports[l1] = snd_seq_create_simple_port(seq_handle, portname,
 	              SND_SEQ_PORT_CAP_READ|SND_SEQ_PORT_CAP_SUBS_READ,
 	              SND_SEQ_PORT_TYPE_APPLICATION)) < 0) {
